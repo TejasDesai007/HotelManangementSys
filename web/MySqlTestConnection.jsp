@@ -10,7 +10,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello here Welcome to Hotel Management System!</h1>
         <%
             MySqlConnection dbc = new MySqlConnection();
             Connection con = null;
