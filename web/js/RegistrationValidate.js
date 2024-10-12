@@ -14,12 +14,28 @@ $('document').ready(function () {
     });
 });
 function validateRegUser() {
-    if ($("#txtFullName").val() === '') {
-        alert("Enter Name");
+    if ($("#txtFName").val() === '') {
+        alert("Enter First Name");
+        return false;
+    }
+    if ($("#txtLName").val() === '') {
+        alert("Enter Last Name");
         return false;
     }
     if ($("#txtEmail").val() === '') {
         alert("Enter Email");
+        return false;
+    }
+    if ($("#txtPhone").val() === '') {
+        alert("Enter Phone");
+        return false;
+    }
+    if ($("#txtEmpNo").val() === '') {
+        alert("Enter Employee No.");
+        return false;
+    }
+    if ($("#selUserType").val() === '0') {
+        alert("Select User Type");
         return false;
     }
     if ($("#txtUserNm").val() === '') {
@@ -39,8 +55,7 @@ function validateRegUser() {
         alert("Confirm Password didn't matched");
         return false;
     }
-
-
+    
     if (confirm("Are You Sure Want to Save?")) {
         $("#frmRegCrdt").submit();
     }
