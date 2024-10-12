@@ -11,12 +11,10 @@
 %>
 <%
     String strUserId = String.valueOf(session.getAttribute("UserId"));
-    out.println("StrUserId : " + strUserId);
     if ("".equals(isBlankNull(strUserId)) || "null".equalsIgnoreCase(strUserId)) {
         response.sendRedirect("login.jsp");
         session.removeAttribute("UserId");
     } else {
-
 %>
 <html>
     <head>
@@ -27,23 +25,44 @@
         <script src="js/JQuery.js" type="text/javascript"></script>
         <jsp:include page="include/menu.jsp"/>
     </head>
-    <body class="bg-primary">
-
-
-        <div class="card" style="align-content: center">
-            <div class="card-body">
-                <label class="text-danger">Welcome to Your Website </label>
-
-
-                <%                    
-                    MySqlConnection dbc = new MySqlConnection();
-                    Connection con = null;
-                    PreparedStatement pstmt = null;
-                    ResultSet rst = null;
-
-                %>
+    <body class="bg-success">
+        <!-- Main Content with Bootstrap Card -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-light text-dark">
+                        <div class="card-header text-center">
+                            <h2>Welcome to Apex Hotels</h2>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Enjoy Your Stay</h5>
+                            <p class="card-text">
+                                At Apex Hotels, we strive to provide the best possible service to our guests. From luxurious rooms to world-class dining, 
+                                everything is crafted to make your experience unforgettable. Explore our exclusive services such as Room Service, Dining, and Spa & Wellness.
+                            </p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light text-dark">
+                        <div class="card-header text-center">
+                            <h2>Welcome to Apex Hotels</h2>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Enjoy Your Stay</h5>
+                            <p class="card-text">
+                                At Apex Hotels, we strive to provide the best possible service to our guests. From luxurious rooms to world-class dining, 
+                                everything is crafted to make your experience unforgettable. Explore our exclusive services such as Room Service, Dining, and Spa & Wellness.
+                            </p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
+
 
     </body>
 </html>

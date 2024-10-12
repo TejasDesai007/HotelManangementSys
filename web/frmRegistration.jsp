@@ -21,14 +21,10 @@
             .custom-width {
                 width: 500px; /* Adjust the width as per your requirement */
             }
-            body {
-                background-image: url('Images/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
+            
         </style>
     </head>
-    <body >
+    <body class="bg-success">
         <form id="frmRegCrdt" name="frmRegCrdt" method="POST" action="saveRegUser.jsp">
             <div class="container">
                 <div class="row">
