@@ -1,0 +1,16 @@
+create schema hms;
+
+
+Create table userdetails(
+    userid int primary key not null,
+    UserName varchar(256),
+    fName varchar(256),
+    lName varchar(256),
+    Email varchar(256),
+    Password varchar(256),
+    UserType varchar(256),
+    CreatedOn timestamp,
+    UpdatedOn timestamp,
+    EmployeeNo varchar(256),
+    Phone int
+);

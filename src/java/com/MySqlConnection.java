@@ -17,14 +17,18 @@ public class MySqlConnection {
     public Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("1");
             String url = "jdbc:mysql://localhost:3306/hms";
+            System.out.println("1");
             String username = "root";
+            System.out.println("1");
             String password = "root";
+            System.out.println("1");
             con = DriverManager.getConnection(url, username, password);
+            System.out.println("1");
             System.out.println("Connection String : >>>>>>" + con);
         } catch (Exception ex) {
             System.out.println("Exception While Connection : " + ex.getMessage());
-
         }
         return con;
     }
