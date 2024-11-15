@@ -16,11 +16,14 @@
     String strPassword = isBlankNull(request.getParameter("txtPassword"));
     try {
         con = dbc.getConnection();
-        pstmt = con.prepareStatement("select UserId from userdetails where BINARY UserName = '" + strUserName + "' and BINARY Password = '" + strPassword + "'");
-//        System.out.println("select UserId from userdetails where BINARY UserName = '" + strUserName + "' and BINARY Password = '" + strPassword + "'");
+        pstmt = con.prepareStatement("select UserId,fname from userdetails where BINARY UserName = ? and BINARY Password = ?");
+        pstmt.setString(1, strUserName);
+        pstmt.setString(2, strPassword);
+        System.out.println("select UserId,fname from userdetails where BINARY UserName = '" + strUserName + "' and BINARY Password = '" + strPassword + "'");
         rst = pstmt.executeQuery();
         if (rst.next()) {
             session.setAttribute("UserId", "" + rst.getString("UserId") + "");
+            session.setAttribute("UserName", "" + rst.getString("fname") + "");
             response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("login.jsp");

@@ -6,27 +6,48 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto"> <!-- Add ms-auto here -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <!-- Dropdown Menu -->
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Services
+                        Rooms
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Room Service</a></li>
-                        <li><a class="dropdown-item" href="#">Dining</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Spa & Wellness</a></li>
+                        <li><a class="dropdown-item" href="#">Add New Room</a></li>
+                        <li><a class="dropdown-item" href="#">Room List</a></li>
                     </ul>
                 </li>
-                <!-- New option on the right end -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Bookings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Add Bookings</a></li>
+                        <li><a class="dropdown-item" href="#">Bookings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Guests
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Add Guest Info</a></li>
+                        <li><a class="dropdown-item" href="#">Guests list</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="logout.jsp" title="Logout">
+                        Logout <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+            <%
+                String strFname = String.valueOf(session.getAttribute("UserName"));
+            %>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><%=strFname%></a>
                 </li>
             </ul>
         </div>

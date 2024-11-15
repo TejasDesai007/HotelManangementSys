@@ -105,6 +105,7 @@ public class UserRegistration {
             dbc = new MySqlConnection();
             con = dbc.getConnection();
             pstmt = con.prepareStatement("insert into userdetails(UserName, fName, lName, Email, Password, UserType, CreatedOn, EmployeeNo, Phone) values(?,?,?,?,?,?,now(),?,?)");
+            System.out.println("insert into userdetails(UserName, fName, lName, Email, Password, UserType, CreatedOn, EmployeeNo, Phone) values('"+ txtUserNm +"','"+ txtFName +"','"+ txtLName +"','"+ txtEmail +"','"+ txtPassword +"','"+ selUserType +"',now(),'"+ txtEmpNo +"','"+ txtPhone +"')");
             pstmt.setString(1, txtUserNm);
             pstmt.setString(2, txtFName);
             pstmt.setString(3, txtLName);
@@ -115,7 +116,7 @@ public class UserRegistration {
             pstmt.setString(8, txtPhone);
             pstmt.executeUpdate();
             System.out.println();
-            System.out.println("insert into userdetails(UserName, fName, lName, Email, Password, UserType, CreatedOn, EmployeeNo, Phone) values('"+ txtUserNm +"','"+ txtFName +"','"+ txtLName +"','"+ txtEmail +"','"+ txtPassword +"','"+ selUserType +"',now(),'"+ txtEmpNo +"','"+ txtPhone +"')");
+            
             pstmt.close();
         } catch (Exception e) {
             e.printStackTrace();
