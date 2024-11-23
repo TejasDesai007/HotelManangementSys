@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fas fa-Hotel"></i> Apex Hotels</a>
+        <a class="navbar-brand" href="../index.jsp"><i class="fas fa-Hotel"></i> Apex Hotels</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,7 +11,7 @@
                         Rooms
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="roomsDropdown">
-                        <li><a class="dropdown-item" href="#">Add New Room</a></li>
+                        <li><a class="dropdown-item" href="Rooms/frmRooms.jsp">Add New Room</a></li>
                         <li><a class="dropdown-item" href="#">Room List</a></li>
                     </ul>
                 </li>
@@ -43,7 +43,7 @@
                 String strFname = String.valueOf(session.getAttribute("UserName"));
             %>
             
-            <label class="">Hii <%=strFname%>!</label>
+            <label class="justify-content-end mb-0"><h6>Hii <%=strFname%>!</h6></label>
                 
             
         </div>
