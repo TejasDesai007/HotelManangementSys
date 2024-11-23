@@ -13,6 +13,7 @@
                     <ul class="dropdown-menu" aria-labelledby="roomsDropdown">
                         <li><a class="dropdown-item" href="Rooms/frmRooms.jsp">Add New Room</a></li>
                         <li><a class="dropdown-item" href="#">Room List</a></li>
+                        <li><a class="dropdown-item" href="Rooms/frmTypePrice.jsp">Type&Price</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

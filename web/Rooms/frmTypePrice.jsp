@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                     <div class="card bg-light text-dark">
                         <div class="card-header text-center">
-                            <h2>Insert Rooms Details</h2>
+                            <h4>Insert Rooms types and price Details</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
