@@ -115,7 +115,7 @@ public class UserRegistration {
             pstmt.setString(7, txtEmpNo);
             pstmt.setString(8, txtPhone);
             pstmt.executeUpdate();
-            System.out.println();
+            pstmt.close();
             
             pstmt.close();
         } catch (Exception e) {
