@@ -24,6 +24,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="../style/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="../style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="../js/JQuery.js" type="text/javascript"></script>
         <script src="../js/TypePrice.js" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
@@ -50,7 +51,7 @@
                                         <label for="txtTypePrice">Type price: </label>
                                     </div>
                                     <div class="col-4">
-                                        <input type="text" id="txtTypePrice" name="txtTypePrice" class="form-control form-control-sm" placeholder="Enter Type price"/>
+                                        <input type="text" id="txtTypePrice" name="txtTypePrice" class="form-control form-control-sm" placeholder="Enter Type price" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
                                     </div>
                                 </div>
                                 <div class="row d-flex justify-content-center  mt-3" style="height:50px;">

@@ -89,6 +89,14 @@ Create table roomsTypesDetails(
    foreign key (created_by) references userdetails(userid),
    foreign key (updated_by) references userdetails(userid)
 );
-select * from roomstypesdetails;
+
+
+select type, type_price, created_by,fname from roomstypesdetails rtp 
+join (
+Select userid,fname from userdetails
+)ud on ud.userid = rtp.created_by;
+
+Select * from roomstypesdetails;
+
 
 
