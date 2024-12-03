@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class RoomDtls {
 
-    private String txtUserId, txtTypePrice, txtRoomType;
+    private String txtUserId, txtRoomdscrpt, txtRoomPrice, slcRoomType, txtRoomNo;
 
     public String getTxtUserId() {
         return txtUserId;
@@ -25,20 +25,36 @@ public class RoomDtls {
         this.txtUserId = txtUserId;
     }
 
-    public String getTxtTypePrice() {
-        return txtTypePrice;
+    public String getTxtRoomdscrpt() {
+        return txtRoomdscrpt;
     }
 
-    public void setTxtTypePrice(String txtTypePrice) {
-        this.txtTypePrice = txtTypePrice;
+    public void setTxtRoomdscrpt(String txtRoomdscrpt) {
+        this.txtRoomdscrpt = txtRoomdscrpt;
     }
 
-    public String getTxtRoomType() {
-        return txtRoomType;
+    public String getTxtRoomPrice() {
+        return txtRoomPrice;
     }
 
-    public void setTxtRoomType(String txtRoomType) {
-        this.txtRoomType = txtRoomType;
+    public void setTxtRoomPrice(String txtRoomPrice) {
+        this.txtRoomPrice = txtRoomPrice;
+    }
+
+    public String getSlcRoomType() {
+        return slcRoomType;
+    }
+
+    public void setSlcRoomType(String slcRoomType) {
+        this.slcRoomType = slcRoomType;
+    }
+
+    public String getTxtRoomNo() {
+        return txtRoomNo;
+    }
+
+    public void setTxtRoomNo(String txtRoomNo) {
+        this.txtRoomNo = txtRoomNo;
     }
 
     public String isBlankNull(String s) {
@@ -51,17 +67,31 @@ public class RoomDtls {
         PreparedStatement pstmt = null;
         ResultSet rst = null;
         MySqlConnection dbc;
+        String roomtype = "";
         try {
             dbc = new MySqlConnection();
             con = dbc.getConnection();
-            pstmt = con.prepareStatement("Insert into roomsTypesDetails(type,type_price,created_on,created_by) values (?,?,now(),?)");
-            pstmt.setString(1, txtRoomType);
-            pstmt.setString(2, txtTypePrice);
-            pstmt.setString(3, txtUserId);
+            pstmt = con.prepareStatement("Select type from roomstypesdetails where type_id = ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            pstmt.setString(1, slcRoomType);
+            rst = pstmt.executeQuery();
+            if (rst.next()) {
+                roomtype = rst.getString("type");
+            }
+
+            rst.close();
+            pstmt.close();
+            pstmt = con.prepareStatement("Insert into rooms(room_no, status, room_type, price_per_day, room_dscrpt, created_on, created_by, type_id) values (?,'Unoccupied',?,?,?,now(),?,?)");
+            pstmt.setString(1, txtRoomNo);
+            pstmt.setString(2, roomtype);
+            pstmt.setString(3, txtRoomPrice);
+            pstmt.setString(4, txtRoomdscrpt);
+            pstmt.setString(5, txtUserId);
+            pstmt.setString(6, slcRoomType);
             pstmt.executeUpdate();
             pstmt.close();
 
         } catch (Exception e) {
+            System.out.println("Error in RoomDtls.java");
             e.printStackTrace();
             e = ex;
         } finally {

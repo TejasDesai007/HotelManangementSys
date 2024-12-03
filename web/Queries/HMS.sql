@@ -99,4 +99,14 @@ Select userid,fname from userdetails
 Select * from roomstypesdetails;
 
 
+Select roomid from rooms where room_no = 342;
 
+Select type from roomstypesdetails where type_id = 1;
+
+Select * from rooms;
+
+SELECT roomid, room_no, status, room_type, price_per_day, room_dscrpt, created_on, DATE_FORMAT(created_on, '%d-%m-%Y') AS Created_on,u.fName FROM rooms r 
+inner join (
+    Select userid,fName from userdetails
+)u on u.userid = r.created_by
+ WHERE 1=1;

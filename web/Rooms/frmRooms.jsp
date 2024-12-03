@@ -15,6 +15,43 @@
         response.sendRedirect("login.jsp");
         session.removeAttribute("UserId");
     } else {
+        String roomid = request.getParameter("roomid");
+        MySqlConnection dbc = new MySqlConnection();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rst = null;
+        String room_no = "";
+        String room_type = "";
+        String price_per_day = "";
+        String room_dscrpt = "";
+
+        if (roomid != null && !roomid.trim().isEmpty()) {
+            try {
+                con = dbc.getConnection();
+                // Query to fetch room details based on roomid
+                pstmt = con.prepareStatement("SELECT * FROM rooms WHERE roomid = ?");
+                pstmt.setInt(1, Integer.parseInt(roomid));
+                rst = pstmt.executeQuery();
+
+                if (rst.next()) {
+                    room_no = rst.getString("room_no");
+                    room_type = rst.getString("room_type");
+                    price_per_day = rst.getString("price_per_day");
+                    room_dscrpt = rst.getString("room_dscrpt");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                out.println("Error fetching room details.");
+            } finally {
+                try {
+                    if (rst != null) rst.close();
+                    if (pstmt != null) pstmt.close();
+                    if (con != null) con.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 %>
 <html>
     <head>
@@ -27,8 +64,9 @@
         <script src="../js/JQuery.js" type="text/javascript"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script src="../js/RoomDtls.js?v=03122024074234" type="text/javascript"></script>
         <script src="../js/OnlyNumbers.js" type="text/javascript"></script>
-        <script src="../js/RoomDtls.js" type="text/javascript"></script>
+
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">
@@ -48,6 +86,7 @@
                                     </div>
                                     <div class="col-4">
                                         <input type="text" id="txtRoomNo" name="txtRoomNo" class="form-control form-control-sm" placeholder="Enter Room No" onkeydown="allowOnlyNumbers(event)"/>
+                                        <label class="text-danger d-none" id="lblValidateRooms"><samll>The room already exist!</samll></label>
                                     </div>
                                     <div class="col-2">
                                         <label for="slcRoomType">Room Type: </label>
@@ -92,7 +131,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-2">
-                                        <label for="txtRoomNo">Room Description: </label>
+                                        <label for="txtRoomdscrpt">Room Description: </label>
                                     </div>
                                     <div class="col-10">
                                         <textarea class="form-control" id="txtRoomdscrpt" name="txtRoomdscrpt" rows="4" placeholder="Enter Description"></textarea>
@@ -103,7 +142,8 @@
                                 <div class="row d-flex justify-content-center mt-3" style="height:50px;">
                                     <div class="col-12 col-md-2">
                                         <button type="submit" class="btn btn-success w-50">Submit</button>
-                                        <input type="text" id="txtUserId" class="d-none" name="txtUserId" value="<%= strUserId%>"/>
+                                        <input type="text" id="txtUserId"  class="d-none" name="txtUserId" value="<%= strUserId%>"/>
+
                                     </div>
                                 </div>
                             </div>

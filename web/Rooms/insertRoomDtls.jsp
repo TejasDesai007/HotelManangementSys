@@ -1,10 +1,10 @@
 <jsp:useBean id="obj" class="com.RoomDtls"/>
 <jsp:setProperty property="*" name="obj"/>
 <%
-    if (obj.TypePrice() == null) {
-        response.sendRedirect("index.jsp");
+    if (obj.RoomDtls() == null) {
+        response.sendRedirect("frmRooms.jsp");
 //        out.println("successFull");
     } else {
-        out.println(obj.TypePrice());
+        out.println(obj.RoomDtls());
     }
 %>
