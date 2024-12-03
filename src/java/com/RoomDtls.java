@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class RoomDtls {
 
-    private String txtUserId, txtRoomdscrpt, txtRoomPrice, slcRoomType, txtRoomNo;
+    private String txtUserId, txtRoomdscrpt, txtRoomPrice, slcRoomType, txtRoomNo, txtRoomId;
 
     public String getTxtUserId() {
         return txtUserId;
@@ -57,6 +57,14 @@ public class RoomDtls {
         this.txtRoomNo = txtRoomNo;
     }
 
+    public String getTxtRoomId() {
+        return txtRoomId;
+    }
+
+    public void setTxtRoomId(String txtRoomId) {
+        this.txtRoomId = txtRoomId;
+    }
+
     public String isBlankNull(String s) {
         return (s == null || s.trim().isEmpty()) ? "" : s;
     }
@@ -77,18 +85,31 @@ public class RoomDtls {
             if (rst.next()) {
                 roomtype = rst.getString("type");
             }
-
             rst.close();
             pstmt.close();
-            pstmt = con.prepareStatement("Insert into rooms(room_no, status, room_type, price_per_day, room_dscrpt, created_on, created_by, type_id) values (?,'Unoccupied',?,?,?,now(),?,?)");
-            pstmt.setString(1, txtRoomNo);
-            pstmt.setString(2, roomtype);
-            pstmt.setString(3, txtRoomPrice);
-            pstmt.setString(4, txtRoomdscrpt);
-            pstmt.setString(5, txtUserId);
-            pstmt.setString(6, slcRoomType);
-            pstmt.executeUpdate();
-            pstmt.close();
+
+            if (txtRoomId == null || txtRoomId.trim().isEmpty()) {
+                pstmt = con.prepareStatement("Insert into rooms(room_no, status, room_type, price_per_day, room_dscrpt, created_on, created_by, type_id) values (?,'Unoccupied',?,?,?,now(),?,?)");
+                pstmt.setString(1, txtRoomNo);
+                pstmt.setString(2, roomtype);
+                pstmt.setString(3, txtRoomPrice);
+                pstmt.setString(4, txtRoomdscrpt);
+                pstmt.setString(5, txtUserId);
+                pstmt.setString(6, slcRoomType);
+                pstmt.executeUpdate();
+                pstmt.close();
+            } else {
+                pstmt = con.prepareStatement("Update rooms set room_no = ?, room_type = ?, price_per_day = ?, room_dscrpt = ?, updated_on = now(), updated_by = ?, type_id = ? where roomid = ?");
+                pstmt.setString(1, txtRoomNo);
+                pstmt.setString(2, roomtype);
+                pstmt.setString(3, txtRoomPrice);
+                pstmt.setString(4, txtRoomdscrpt);
+                pstmt.setString(5, txtUserId);
+                pstmt.setString(6, slcRoomType);
+                pstmt.setString(7, txtRoomId); // Ensure that the correct room_id is set
+                pstmt.executeUpdate();
+                pstmt.close();
+            }
 
         } catch (Exception e) {
             System.out.println("Error in RoomDtls.java");

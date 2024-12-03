@@ -2,7 +2,7 @@
 <jsp:setProperty property="*" name="obj"/>
 <%
     if (obj.RoomDtls() == null) {
-        response.sendRedirect("frmRooms.jsp");
+        response.sendRedirect("RoomsList");
 //        out.println("successFull");
     } else {
         out.println(obj.RoomDtls());

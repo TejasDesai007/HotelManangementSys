@@ -24,12 +24,12 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="../style/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="../style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/OnlyNumbers.js" type="text/javascript"></script>
-        <script src="../js/JQuery.js" type="text/javascript"></script>
-        <script src="../js/TypePrice.js" type="text/javascript"></script>
-        <script src="../js/RoomList.js" type="text/javascript"></script>
+        <link href="style/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/OnlyNumbers.js" type="text/javascript"></script>
+        <script src="js/JQuery.js" type="text/javascript"></script>
+        <script src="js/TypePrice.js" type="text/javascript"></script>
+        <script src="js/RoomList.js" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">

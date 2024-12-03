@@ -26,7 +26,7 @@ $(document).ready(function () {
 
             // Send the JSON object to the backend using AJAX
             $.ajax({
-                url: 'RoomListInnr.jsp', // URL of the servlet to process the data
+                url: 'RoomListInnr', // URL of the servlet to process the data
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(data), // Convert the JSON object to a string
@@ -44,7 +44,7 @@ $(document).ready(function () {
     // Function to load the room list when the page loads
     function loadRoomList() {
         $.ajax({
-            url: 'RoomListInnr.jsp', // URL to get all rooms when the page is loaded
+            url: 'RoomListInnr', // URL to get all rooms when the page is loaded
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({}), // Send an empty object to get all rooms
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 var row = '<tr>';
                 row += '<td class="text-center">'+ item.index+'</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' +
-                   '<a href="frmRooms.jsp?roomid=' + item.roomid + '" class="btn btn-primary btn-sm">Edit</a>' + 
+                   '<a href="Rooms?roomid=' + item.roomid + '" class="btn btn-primary btn-sm">Edit</a>' + 
                    '</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' + item.room_no + '</td>';
                 row += '<td class="text-center">' + item.room_type + '</td>';

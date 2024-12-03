@@ -16,14 +16,14 @@ $(document).ready(function () {
 
         // Send data to the backend using AJAX
         $.ajax({
-            url: 'ValidateRoomNo.jsp', // Backend endpoint URL
+            url: 'ValidateRoomNo', // Backend endpoint URL
             type: 'POST', // HTTP method
             async: true,
             data: {roomno: $("#txtRoomNo").val()}, // Data to send
             success: function (response) {
                 // Handle success response
                 
-                if (response.trim() === "Exist") {
+                if (response.trim() === "Exist" && $('#txtRoomId').val().trim() === "") {
                     // Show the validation label with Bootstrap red class
                     $('#lblValidateRooms').removeClass('d-none');
                 } else {
@@ -72,11 +72,12 @@ $(document).ready(function () {
         }
 
         // If the room number already exists, prevent form submission
-        if ($('#lblValidateRooms').is(':visible')) {
+        if ($('#lblValidateRooms').is(':visible') && $('#txtRoomId').val().trim() === "") {
             alert("The room number already exists.");
             e.preventDefault(); // Prevent form submission
             return false;
         }
+        
 
         // If all validation passes, allow form submission
         return true;
