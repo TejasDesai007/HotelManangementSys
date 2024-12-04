@@ -34,7 +34,7 @@ CREATE TABLE rooms(
 );
 select * From rooms;
 
-
+insert into guests()
 
 
 CREATE TABLE guests(
@@ -105,8 +105,20 @@ Select type from roomstypesdetails where type_id = 1;
 
 Select * from rooms;
 
+
+
+
 SELECT roomid, room_no, status, room_type, price_per_day, room_dscrpt, created_on, DATE_FORMAT(created_on, '%d-%m-%Y') AS Created_on,u.fName FROM rooms r 
 inner join (
     Select userid,fName from userdetails
 )u on u.userid = r.created_by
  WHERE 1=1;
+
+
+
+# guestid, lname, fname, address1, address2, city, state, country, pincode, UID_type, UID_NO, phone, created_on, update_on, created_by, updated_by
+
+
+Select  guestid, lname, g.fname, address1, address2, city, state, country, pincode, UID_type, UID_NO, phone, DATE_FORMAT(created_on, '%d-%m-%Y') AS createdOn,DATE_FORMAT(update_on, '%d-%m-%Y') AS updatedOn , u.fName, ul.fName  from guests g  join(  Select userid,fName from userdetails  )u on u.userid = g.created_by  join(  Select userid,fName from userdetails  )ul on ul.userid = g.updated_by   WHERE 1=1 
+
+

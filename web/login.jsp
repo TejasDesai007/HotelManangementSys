@@ -29,7 +29,7 @@
         </style>
     </head>
     <body class="bg-success">
-        <form id="frmLoginCrdt" name="frmLoginCrdt" method="POST" action="ValidateCredentials.jsp">
+        <form id="frmLoginCrdt" name="frmLoginCrdt" method="POST" action="ValidateCredentials">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 offset-sm-2 center-card">

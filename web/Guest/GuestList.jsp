@@ -28,8 +28,8 @@
         <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
-        <script src="js/TypePrice.js" type="text/javascript"></script>
-        <script src="js/RoomList.js" type="text/javascript"></script>
+        <script src="js/GuestList.js" type="text/javascript"></script>
+        
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">
@@ -40,30 +40,43 @@
                 <div class="col-md-12">
                     <div class="card bg-light text-dark">
                         <div class="card-header text-center">
-                            <h4>Rooms List</h4>
+                            <h4>Guest List</h4>
                         </div>
 
-                        <table class="table table-bordered table-striped" id="inputTable">
+                        <table class="table table-bordered table-responsive" id="inputTable" style="table-layout: auto;">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="text-center"></th>
                                     <th scope="col" class="text-center"></th>
-                                    <th scope="col" class="text-center">Room No</th>
-                                    <th scope="col" class="text-center">Room Type</th>
-                                    <th scope="col" class="text-center">Price Per Day</th>
-                                    <th scope="col" class="text-center">Room Description</th>
-                                    <th scope="col" class="text-center">Room Created on</th>
-                                    <th scope="col" class="text-center">Room Created by</th>
+                                    <th scope="col" class="text-center">Guest</th>
+                                    <th scope="col" class="text-center">Address</th>
+                                    <th scope="col" class="text-center">City</th>
+                                    <th scope="col" class="text-center">State</th>
+                                    <th scope="col" class="text-center">Country</th>
+                                    <th scope="col" class="text-center">Pincode</th>
+                                    <th scope="col" class="text-center">UID type</th>
+                                    <th scope="col" class="text-center">UID No</th>
+                                    <th scope="col" class="text-center">Phone</th>
+                                    <th scope="col" class="text-center">Created On</th>
+                                    <th scope="col" class="text-center">Created By</th>
+                                    
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td><label for="textbox1" class="d-none">room_no</label><input type="text" id="textbox1" name="textbox1" class="form-control form-control-sm"></td>
-                                    <td><label for="textbox2" class="d-none">room_type</label><input type="text" id="textbox2" name="textbox2" class="form-control form-control-sm"></td>
+                                    <td><label for="textbox1" class="d-none">lname</label><input type="text" id="textbox1" name="textbox1" class="form-control form-control-sm"></td>
                                     <td></td>
-                                    <td><label for="textbox3" class="d-none">room_dscrpt</label><input type="text" id="textbox3" name="textbox3" class="form-control form-control-sm" ></td>
+                                    <td><label for="textbox2" class="d-none">city</label><input type="text" id="textbox2" name="textbox2" class="form-control form-control-sm"></td>
+                                    <td><label for="textbox3" class="d-none">state</label><input type="text" id="textbox3" name="textbox3" class="form-control form-control-sm"> </td>
+                                    <td><label for="textbox4" class="d-none">country</label><input type="text" id="textbox4" name="textbox4" class="form-control form-control-sm" ></td>
+                                    <td><label for="textbox5" class="d-none">pincode</label><input type="text" id="textbox5" name="textbox5" class="form-control form-control-sm" ></td>
                                     <td></td>
+                                    <td><label for="textbox6" class="d-none">UID_NO</label><input type="text" id="textbox6" name="textbox6" class="form-control form-control-sm" ></td>
+                                    <td><label for="textbox7" class="d-none">phone</label><input type="text" id="textbox7" name="textbox7" class="form-control form-control-sm" ></td>
+                                    <td ></td>
                                     <td></td>
+                                    
+                                    
                                     <!-- Add more textboxes as needed -->
                                 </tr>
                             </thead>

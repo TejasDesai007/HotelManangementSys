@@ -8,7 +8,7 @@
         <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/JQuery.js" type="text/javascript"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-        <script src="js/RegistrationValidate.js" type="text/javascript"></script>
+        <script src="js/RegistrationValidate.js?v=04122024025612" type="text/javascript"></script>
         <style>
             /* Center the card */
             .center-card {
@@ -21,11 +21,11 @@
             .custom-width {
                 width: 500px; /* Adjust the width as per your requirement */
             }
-            
+
         </style>
     </head>
     <body class="bg-success">
-        <form id="frmRegCrdt" name="frmRegCrdt" method="POST" action="saveRegUser.jsp">
+        <form id="frmRegCrdt" name="frmRegCrdt" method="POST" action="saveRegUser">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 offset-sm-2 center-card">
@@ -41,7 +41,7 @@
                                         <label for="txtLName">Last Name: </label>  <input type="textbox" id="txtLName" class="form-control form-control-sm bg-white" name="txtLName" autocomplete="on"/>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row mt-3">
                                     <div class="col-6">
                                         <label for="txtEmail">Email: </label>  <input type="textbox" id="txtEmail" class="form-control form-control-sm bg-white" name="txtEmail" autocomplete="on"/>
@@ -69,10 +69,12 @@
                                 <div class="row mt-3">
                                     <div class="col-12">
                                         <label for="txtUserNm">User Name: </label>  <input type="textbox" id="txtUserNm" class="form-control form-control-sm bg-white" name="txtUserNm" autocomplete="on"/>
+                                        <small><label id="lblUserNmMsg" class="text-danger d-none"></label></small>
                                     </div>
                                 </div>
-                                
-                                
+
+
+
                                 <div class="row mt-3">
                                     <div class="col-12">
                                         <label for="txtPassword">Password: </label> <input type="password" id="txtPassword" class="form-control form-control-sm bg-white" name="txtPassword" autocomplete="on"/>
@@ -90,7 +92,7 @@
                                 </div>
 
                                 <!-- User Type Select -->
-                                
+
 
                                 <div class="row mt-3">
                                     <div class="col-4">

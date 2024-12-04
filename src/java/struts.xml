@@ -14,6 +14,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         <action name="Logout">
             <result>logout.jsp</result>
         </action>
+        <action name="ValidateCredentials">
+            <result>ValidateCredentials.jsp</result>
+        </action>
+        <action name="saveRegUser">
+            <result>saveRegUser.jsp</result>
+        </action>
+        <action name="ValidatedUsername">
+            <result>UsernameExistValidate.jsp</result>
+        </action>
          
         <action name="Rooms" >
             <result>/Rooms/frmRooms.jsp</result>
@@ -34,6 +43,21 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         <action name="ValidateRoomNo">
             <result>/Rooms/ValidateRoomNo.jsp</result>
         </action>
+        
+        
+        <action name="Guests">
+            <result>/Guest/frmGuest.jsp</result>
+        </action>
+        <action name="InsertGuest">
+            <result>/Guest/InsertGuest.jsp</result>
+        </action>
+        <action name="GuestList">
+            <result>/Guest/GuestList.jsp</result>
+        </action>
+        <action name="GuestListInnr">
+            <result>/Guest/GuestListInnr.jsp</result>
+        </action>
+        
         
     </package>
 </struts>

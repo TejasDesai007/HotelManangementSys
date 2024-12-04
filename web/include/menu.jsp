@@ -30,8 +30,8 @@
                         Guests
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="guestsDropdown">
-                        <li><a class="dropdown-item" href="#">Add Guest Info</a></li>
-                        <li><a class="dropdown-item" href="#">Guests List</a></li>
+                        <li><a class="dropdown-item" href="Guests">Add Guest Info</a></li>
+                        <li><a class="dropdown-item" href="GuestList">Guests List</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
