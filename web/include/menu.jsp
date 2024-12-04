@@ -35,7 +35,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.jsp" title="Logout">
+                    <a class="nav-link" href="Logout" title="Logout">
                         Logout <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>

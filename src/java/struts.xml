@@ -8,6 +8,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         <action name="Home">
             <result>index.jsp</result>
         </action>
+        <action name="Login">
+            <result>login.jsp</result>
+        </action>
+        <action name="Logout">
+            <result>logout.jsp</result>
+        </action>
          
         <action name="Rooms" >
             <result>/Rooms/frmRooms.jsp</result>

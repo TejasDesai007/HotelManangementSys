@@ -2,7 +2,7 @@
 <jsp:setProperty property="*" name="obj"/>
 <%
     if (obj.UserRegistration() == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("Login");
     } else {
         out.println(obj.UserRegistration());
     }
