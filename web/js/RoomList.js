@@ -70,8 +70,11 @@ $(document).ready(function () {
                 var row = '<tr>';
                 row += '<td class="text-center">'+ item.index+'</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' +
-                   '<a href="Rooms?roomid=' + item.roomid + '" class="btn btn-primary btn-sm">Edit</a>' + 
-                   '</td>'; // Empty column for actions (like buttons, etc.)
+                   '<a href="Rooms?roomid=' + item.roomid + '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>' + 
+                   '</td>';
+                row += '<td class="text-center">' +
+                   '<a href="DeleteRooms?roomid=' + item.roomid + '" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>' + 
+                   '</td>';
                 row += '<td class="text-center">' + item.room_no + '</td>';
                 row += '<td class="text-center">' + item.room_type + '</td>';
                 row += '<td class="text-center">' + item.price_per_day + '</td>';

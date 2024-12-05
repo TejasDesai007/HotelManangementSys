@@ -73,7 +73,10 @@ $(document).ready(function () {
                 var row = '<tr>';
                 row += '<td class="text-center">' + item.index + '</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' +
-                        '<a href="Guests?guestid=' + item.guestid + '" class="btn btn-primary btn-sm">Edit</a>' +
+                        '<a href="Guests?guestid=' + item.guestid + '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>' +
+                        '</td>'; // Empty column for actions (like buttons, etc.)
+                row += '<td class="text-center">' +
+                        '<a href="DeleteGuest?guestid=' + item.guestid + '" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>' +
                         '</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' + item.lname + ' ' + item.fname + '</td>';
                 row += '<td class="text-center">' + item.address1 + ' ' + item.address2 + '</td>';

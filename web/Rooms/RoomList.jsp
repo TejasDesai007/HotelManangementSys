@@ -29,7 +29,7 @@
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
         <script src="js/TypePrice.js" type="text/javascript"></script>
-        <script src="js/RoomList.js" type="text/javascript"></script>
+        <script src="js/RoomList.js?v=1" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">
@@ -48,6 +48,7 @@
                                 <tr>
                                     <th scope="col" class="text-center"></th>
                                     <th scope="col" class="text-center"></th>
+                                    <th scope="col" class="text-center"></th>
                                     <th scope="col" class="text-center">Room No</th>
                                     <th scope="col" class="text-center">Room Type</th>
                                     <th scope="col" class="text-center">Price Per Day</th>
@@ -56,6 +57,7 @@
                                     <th scope="col" class="text-center">Room Created by</th>
                                 </tr>
                                 <tr>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td><label for="textbox1" class="d-none">room_no</label><input type="text" id="textbox1" name="textbox1" class="form-control form-control-sm"></td>

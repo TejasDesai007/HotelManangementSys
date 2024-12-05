@@ -24,6 +24,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
             <result>UsernameExistValidate.jsp</result>
         </action>
          
+         
+         
+         
         <action name="Rooms" >
             <result>/Rooms/frmRooms.jsp</result>
         </action>
@@ -43,6 +46,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         <action name="ValidateRoomNo">
             <result>/Rooms/ValidateRoomNo.jsp</result>
         </action>
+        <action name="DeleteType">
+            <result>/Rooms/DeleteType.jsp</result>
+        </action>
+        
+        
+        
         
         
         <action name="Guests">

@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col text-center">
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="submit" class="btn btn-success">Submit<i class="fas fa-paper-plane"></i></button>
                                         <input type="hidden" id="txtUserId" name="txtUserId" value="<%=strUserId%>">
                                         <input type="hidden" id="txtGuestId" name="txtGuestId" value="<%= isBlankNull(guestId)%>">
 

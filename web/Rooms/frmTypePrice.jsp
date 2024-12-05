@@ -27,6 +27,7 @@
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
         <script src="js/TypePrice.js" type="text/javascript"></script>
+        <script src="js/DeleteType.js" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">
@@ -56,7 +57,7 @@
                                 </div>
                                 <div class="row d-flex justify-content-center  mt-3" style="height:50px;">
                                     <div class="col-12 col-md-2">
-                                        <button type="submit" class="btn btn-success w-50">Submit</button>
+                                        <button type="submit" class="btn btn-success">Submit <i class="fas fa-paper-plane"></i></button>
                                         <input type="text" id="txtUserId" class="d-none" name="txtUserId" value="<%=strUserId%>"/>
                                     </div>
                                 </div>
@@ -98,7 +99,7 @@
                                     try {
                                         dbc = new MySqlConnection();
                                         con = dbc.getConnection();
-                                        pstmt = con.prepareStatement("select type, type_price, created_by,fname from roomstypesdetails rtp "
+                                        pstmt = con.prepareStatement("select type_id, type, type_price, created_by,fname from roomstypesdetails rtp "
                                                 + " join ("
                                                 + " Select userid,fname from userdetails"
                                                 + " )ud on ud.userid = rtp.created_by;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -110,11 +111,10 @@
                                 %>
 
                                 <tr>
-                                    <td class="text-center"><a ><button  class="btn btn-primary btn-sm">Delete</button></a></td>
+                                    <td class="text-center"><a><button onclick="DeleteType(<%=rst.getString("type_id")%>)" type="button" class="btn btn-primary btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                     <td class="text-center"><%= rst.getString("type")%></td>
                                     <td class="text-center">&#8377;<%= rst.getDouble("type_price")%></td>
                                     <td class="text-center"><%= rst.getString("fname")%></td>
-
                                 </tr>
                                 <%
                                     }

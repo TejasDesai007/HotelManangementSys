@@ -138,7 +138,7 @@
                                 <div class="row mt-2"></div>
                                 <div class="row d-flex justify-content-center mt-3" style="height:50px;">
                                     <div class="col-12 col-md-2">
-                                        <button type="submit" class="btn btn-success w-50">Submit</button>
+                                        <button type="submit" class="btn btn-success ">Submit <i class="fas fa-paper-plane"></i></button>
                                         <input type="text" id="txtUserId"  class="d-none" name="txtUserId" value="<%= strUserId%>"/>
                                         <input type="text" id="txtRoomId" class="d-none" name="txtRoomId" value="<%= isBlankNull(roomid)%>">
 

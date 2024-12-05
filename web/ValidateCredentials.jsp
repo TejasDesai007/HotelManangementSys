@@ -24,7 +24,7 @@
         if (rst.next()) {
             session.setAttribute("UserId", "" + rst.getString("UserId") + "");
             session.setAttribute("UserName", "" + rst.getString("fname") + "");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Home");
         } else {
             response.sendRedirect("Login");
         }

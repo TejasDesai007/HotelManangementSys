@@ -28,7 +28,7 @@
         <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
-        <script src="js/GuestList.js" type="text/javascript"></script>
+        <script src="js/GuestList.js?v=1" type="text/javascript"></script>
         
         <jsp:include page="../include/menu.jsp"/>
     </head>
@@ -48,6 +48,7 @@
                                 <tr>
                                     <th scope="col" class="text-center"></th>
                                     <th scope="col" class="text-center"></th>
+                                    <th scope="col" class="text-center"></th>
                                     <th scope="col" class="text-center">Guest</th>
                                     <th scope="col" class="text-center">Address</th>
                                     <th scope="col" class="text-center">City</th>
@@ -62,6 +63,7 @@
                                     
                                 </tr>
                                 <tr>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td><label for="textbox1" class="d-none">lname</label><input type="text" id="textbox1" name="textbox1" class="form-control form-control-sm"></td>

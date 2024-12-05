@@ -119,6 +119,29 @@ inner join (
 # guestid, lname, fname, address1, address2, city, state, country, pincode, UID_type, UID_NO, phone, created_on, update_on, created_by, updated_by
 
 
-Select  guestid, lname, g.fname, address1, address2, city, state, country, pincode, UID_type, UID_NO, phone, DATE_FORMAT(created_on, '%d-%m-%Y') AS createdOn,DATE_FORMAT(update_on, '%d-%m-%Y') AS updatedOn , u.fName, ul.fName  from guests g  join(  Select userid,fName from userdetails  )u on u.userid = g.created_by  join(  Select userid,fName from userdetails  )ul on ul.userid = g.updated_by   WHERE 1=1 
+SELECT 
+    g.guestid, 
+    g.lname, 
+    g.fname, 
+    g.address1, 
+    g.address2, 
+    g.city, 
+    g.state, 
+    g.country, 
+    g.pincode, 
+    g.UID_type, 
+    g.UID_NO, 
+    g.phone, 
+    DATE_FORMAT(g.created_on, '%d-%m-%Y') AS createdOn,
+    DATE_FORMAT(g.update_on, '%d-%m-%Y') AS updatedOn,
+    u.fName AS created_by, 
+    ul.fName AS updated_by
+FROM guests g
+JOIN userdetails u ON u.userid = g.created_by
+JOIN userdetails ul ON ul.userid = g.updated_by
+WHERE 1=1;
 
 
+
+
+SELECT * FROM guests WHERE guestid = 1;
