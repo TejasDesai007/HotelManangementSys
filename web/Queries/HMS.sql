@@ -34,8 +34,6 @@ CREATE TABLE rooms(
 );
 select * From rooms;
 
-insert into guests()
-
 
 CREATE TABLE guests(
     guestid int primary key not null auto_increment,
@@ -59,6 +57,10 @@ CREATE TABLE guests(
 );
 Select * From guests;
 
+
+
+
+
 CREATE TABLE Bookings(
     bookingid int primary key not null auto_increment,
     guestid int,
@@ -69,13 +71,28 @@ CREATE TABLE Bookings(
     room_price decimal(10,2) constraint chk_room_price check(room_price > 0),
     taxes decimal(10,2) constraint chk_taxes check(taxes > 0),
     beverages decimal(10,2) constraint chk_beverages check(beverages > 0),
-    check_in date,
-    check_out date,
+    check_in timestamp,
+    check_out timestamp,
     booked_days int,
     booked_by int,
     foreign key (booked_by) references userdetails(userid)
 );
 select * from Bookings;
+
+# bookingid, guestid, roomid, total_bill, room_price, taxes, beverages, check_in, check_out, booked_days, booked_by
+
+
+DELIMITER $$
+CREATE TRIGGER calculateTotal_Bill
+BEFORE INSERT ON Bookings
+FOR EACH ROW
+BEGIN
+    SET NEW.total_bill = NEW.room_price * NEW.booked_days + NEW.taxes + NEW.beverages;
+END$$
+DELIMITER ;
+
+
+
 
 
 Create table roomsTypesDetails(
@@ -89,14 +106,14 @@ Create table roomsTypesDetails(
    foreign key (created_by) references userdetails(userid),
    foreign key (updated_by) references userdetails(userid)
 );
-
-
+Select * from roomstypesdetails;
 select type, type_price, created_by,fname from roomstypesdetails rtp 
 join (
 Select userid,fname from userdetails
 )ud on ud.userid = rtp.created_by;
 
-Select * from roomstypesdetails;
+
+
 
 
 Select roomid from rooms where room_no = 342;
@@ -145,3 +162,9 @@ WHERE 1=1;
 
 
 SELECT * FROM guests WHERE guestid = 1;
+
+Delete from roomstypesdetails where type_id = 1
+
+
+
+

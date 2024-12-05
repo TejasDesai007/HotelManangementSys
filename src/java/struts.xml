@@ -68,5 +68,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         </action>
         
         
+        
+        
+        <action name="BookForGuest">
+            <result>/Bookins/frmBookings.jsp</result>
+        </action>
+        <action name="InsertBookings">
+            <result>/Bookins/InsertBookings.jsp</result>
+        </action>
+        
+        
     </package>
 </struts>
