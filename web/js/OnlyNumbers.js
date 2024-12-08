@@ -32,3 +32,31 @@ function allowOnlyNumbersAndDecimal(event) {
 }
 
 
+
+function handleDateInput(event) {
+            const input = event.target;
+
+            // Allow navigation/editing keys
+            const allowedKeys = ["Backspace", "ArrowLeft", "ArrowRight", "Tab", "Delete"];
+            if (allowedKeys.includes(event.key)) {
+                return; // Allow these keys
+            }
+
+            // Prevent non-numeric characters
+            if (!/^[0-9]$/.test(event.key)) {
+                event.preventDefault();
+                return;
+            }
+
+            // Format the value dynamically
+            let value = input.value.replace(/\D/g, ""); // Remove non-numeric characters
+
+            if (value.length > 2) {
+                value = value.slice(0, 2) + "-" + value.slice(2);
+            }
+            if (value.length > 5) {
+                value = value.slice(0, 5) + "-" + value.slice(5);
+            }
+
+            input.value = value.slice(0, 10); // Limit to 10 characters
+        }

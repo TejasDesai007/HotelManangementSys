@@ -2,7 +2,7 @@
 <jsp:setProperty property="*" name="obj"/>
 <%
     if (obj.TypePrice() == null) {
-        response.sendRedirect("frmTypePrice.jsp");
+        response.sendRedirect("RoomsType");
 //        out.println("successFull");
     } else {
         out.println(obj.TypePrice());

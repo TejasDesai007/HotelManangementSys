@@ -21,8 +21,8 @@
                         Bookings
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="bookingsDropdown">
-                        <li><a class="dropdown-item" href="#">Add Bookings</a></li>
-                        <li><a class="dropdown-item" href="#">Bookings</a></li>
+                        <li><a class="dropdown-item" href="BookForGuest">Add Bookings</a></li>
+                        <li><a class="dropdown-item" href="BookingsList">Bookings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

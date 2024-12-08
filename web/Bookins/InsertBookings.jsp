@@ -2,8 +2,8 @@
 <jsp:setProperty property="*" name="obj"/>
 <%
     if (obj.Bookings() == null) {
-//        response.sendRedirect("RoomsList");
-        out.println("successFull");
+        response.sendRedirect("BookingsList");
+//        out.println("successFull");
     } else {
         out.println(obj.Bookings());
     }

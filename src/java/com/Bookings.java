@@ -14,16 +14,20 @@ import java.sql.SQLException;
  * @author TEJAS
  */
 public class Bookings {
-    private String txtGuestId,txtUserId,txtTotalAmt,txtBeverage,txtTax,txtTaxPrc,txtStayDays,txtRoomPrice,slcRooms,slcGuest;
 
-    public String getTxtGuestId() {
-        return txtGuestId;
+    private String txtBookingid, txtUserId, txtTotalAmt, txtBeverage, txtTax, txtTaxPrc, txtStayDays, txtRoomPrice, slcRooms, slcGuest;
+
+   
+
+    public String getTxtBookingid() {
+        return txtBookingid;
     }
 
-    public void setTxtGuestId(String txtGuestId) {
-        this.txtGuestId = txtGuestId;
+    public void setTxtBookingid(String txtBookingid) {
+        this.txtBookingid = txtBookingid;
     }
 
+   
     public String getTxtUserId() {
         return txtUserId;
     }
@@ -95,12 +99,13 @@ public class Bookings {
     public void setSlcGuest(String slcGuest) {
         this.slcGuest = slcGuest;
     }
+
     public String isBlankNull(String s) {
         return (s == null || s.trim().isEmpty()) ? "" : s;
     }
-    
-     public Exception Bookings() throws SQLException {
-     Exception ex = null;
+
+    public Exception Bookings() throws SQLException {
+        Exception ex = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rst = null;
@@ -109,9 +114,8 @@ public class Bookings {
         try {
             dbc = new MySqlConnection();
             con = dbc.getConnection();
-           
 
-            if (txtGuestId == null || txtGuestId.trim().isEmpty()) {
+            if (txtBookingid == null || txtBookingid.trim().isEmpty()) {
                 pstmt = con.prepareStatement("Insert into Bookings(guestid, roomid, room_price, taxes, beverages, check_in, booked_days, booked_by) values (?,?,?,?,?,now(),?,?)");
                 pstmt.setString(1, slcGuest);
                 pstmt.setString(2, slcRooms);
@@ -122,13 +126,18 @@ public class Bookings {
                 pstmt.setString(7, txtUserId);
                 pstmt.executeUpdate();
                 pstmt.close();
+
+                pstmt = con.prepareStatement("update rooms set status = 'Occupied' where roomid=?");
+                pstmt.setString(1, slcRooms);
+                pstmt.executeUpdate();
+                pstmt.close();
             } else {
                 pstmt = con.prepareStatement("Update Bookings set room_price = ?, taxes = ?, beverages = ?, booked_days = ? where bookingid = ?");
                 pstmt.setString(1, txtRoomPrice);
                 pstmt.setString(2, txtTax);
                 pstmt.setString(3, txtBeverage);
                 pstmt.setString(4, txtStayDays);
-                pstmt.setString(5, txtGuestId); // Ensure that the correct room_id is set
+                pstmt.setString(5, txtBookingid); // Ensure that the correct room_id is set
                 pstmt.executeUpdate();
                 pstmt.close();
             }
@@ -141,5 +150,5 @@ public class Bookings {
             con.close();
         }
         return ex;
-     }
+    }
 }

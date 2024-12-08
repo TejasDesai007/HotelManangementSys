@@ -15,33 +15,41 @@
         response.sendRedirect("login.jsp");
         session.removeAttribute("UserId");
     } else {
-        String guestid = isBlankNull(request.getParameter("guestid"));
+        String bookingid = isBlankNull(request.getParameter("bookingid"));
         MySqlConnection dbc = new MySqlConnection();
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rst = null;
-        String room_no = "";
-        String room_type = "";
+        String guest = "";
+        String guestName = "";
+        String roomno = "";
         String price_per_day = "";
-        String room_dscrpt = "";
-
-        if (guestid != null && !guestid.trim().isEmpty()) {
+        String noOfDays = "";
+        String tax = "";
+        String taxPer = "";
+        String beverage = "";
+        String totalAmt = "";
+        if (bookingid != null && !bookingid.trim().isEmpty()) {
             try {
                 con = dbc.getConnection();
-                // Query to fetch room details based on guestid
-                pstmt = con.prepareStatement("SELECT * FROM rooms WHERE guestid = ?");
-                pstmt.setInt(1, Integer.parseInt(guestid));
+
+                pstmt = con.prepareStatement("Call GetBookingsDtls(' ANd bookingid = " + bookingid + " ')");
+
                 rst = pstmt.executeQuery();
 
                 if (rst.next()) {
-                    room_no = rst.getString("room_no");
-                    room_type = rst.getString("room_type");
-                    price_per_day = rst.getString("price_per_day");
-                    room_dscrpt = rst.getString("room_dscrpt");
+                    guest = rst.getString("guestid");
+                    guestName = rst.getString("GuestName");
+                    roomno = rst.getString("room_no");
+                    price_per_day = rst.getString("room_price");
+                    noOfDays = rst.getString("booked_days");
+                    tax = rst.getString("taxes");
+                    beverage = rst.getString("beverages");
+                    totalAmt = rst.getString("total_bill");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                out.println("Error fetching room details.");
+                out.println("Error fetching booking details.");
             } finally {
                 try {
                     if (rst != null) {
@@ -92,6 +100,11 @@
                                     </div>
                                     <div class="col-4">
                                         <%
+                                            if (bookingid != null && !bookingid.trim().isEmpty()) {
+                                        %>
+                                        <input type="text" id="txtGuestName" name="txtGuestName" class="form-control form-control-sm" value="<%=guestName%>" placeholder="Enter Days Stay" readonly onkeydown="allowOnlyNumbers(event)"/>
+                                        <%
+                                        } else {
                                             try {
                                                 dbc = new MySqlConnection();
                                                 con = dbc.getConnection();
@@ -103,7 +116,7 @@
                                             <%
                                                 while (rst.next()) {
                                             %>
-                                            <option value="<%= rst.getString("guestid")%>"   >
+                                            <option value="<%= rst.getString("guestid")%>"  <%if (rst.getString("guestid").equals(guest)) {%>selected<%}%> >
                                                 <%= rst.getString("fname")%> <%= rst.getString("lname")%>
                                             </option>
                                             <% } %>
@@ -111,28 +124,35 @@
                                         <span id="errGuest" class="text-danger error-message"></span> 
 
                                         <%
-                                                rst.close();
-                                                pstmt.close();
+                                                    rst.close();
+                                                    pstmt.close();
 
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                                out.println("Error while loading room type");
-                                            } finally {
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                    out.println("Error while loading room type");
+                                                } finally {
 
-                                                con.close();
+                                                    con.close();
 
+                                                }
                                             }
                                         %>
+
                                     </div>
                                     <div class="col-2">
-                                        <label for="slcRooms">Guest: </label>
+                                        <label for="slcRooms">Room: </label>
                                     </div>
                                     <div class="col-4">
                                         <%
+                                            if (bookingid != null && !bookingid.trim().isEmpty()) {
+                                        %>
+                                        <input type="text" id="txtRoomNo" name="txtRoomNo" class="form-control form-control-sm" value="<%=roomno%>" placeholder="Enter Days Stay" readonly onkeydown="allowOnlyNumbers(event)"/>
+                                        <%
+                                        } else {
                                             try {
                                                 dbc = new MySqlConnection();
                                                 con = dbc.getConnection();
-                                                pstmt = con.prepareStatement("Select * from rooms", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                                                pstmt = con.prepareStatement("Select * from rooms where status = 'Unoccupied'", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                                                 rst = pstmt.executeQuery();
                                         %>
                                         <select id="slcRooms" name="slcRooms" class="form-control-sm form-select select2" >
@@ -140,23 +160,26 @@
                                             <%
                                                 while (rst.next()) {
                                             %>
-                                            <option value="<%= rst.getString("roomid")%>" data-price="<%= rst.getInt("price_per_day")%>"  >
+                                            <option value="<%= rst.getString("roomid")%>" data-price="<%= rst.getInt("price_per_day")%>"  <%if (rst.getString("roomid").equals(roomno)) {%>Selected<%}%>>
                                                 <%= rst.getString("room_no")%>(<%= rst.getString("room_type")%>) : <%= rst.getInt("price_per_day")%>&#8377;
                                             </option>
                                             <% } %>
                                         </select>
                                         <span id="errRoom" class="text-danger error-message"></span>
                                         <%
-                                                rst.close();
-                                                pstmt.close();
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                                out.println("Error while loading room type");
-                                            } finally {
+                                                    rst.close();
+                                                    pstmt.close();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                    out.println("Error while loading room type");
+                                                } finally {
 
-                                                con.close();
+                                                    con.close();
+
+                                                }
 
                                             }
+
                                         %>
                                     </div>
 
@@ -173,7 +196,7 @@
                                         <label for="txtStayDays">Number of days: </label>
                                     </div>
                                     <div class="col-4">
-                                        <input type="text" id="txtStayDays" name="txtStayDays" class="form-control form-control-sm" value="<%=price_per_day%>" placeholder="Enter Days Stay" onkeydown="allowOnlyNumbers(event)"/>
+                                        <input type="text" id="txtStayDays" name="txtStayDays" class="form-control form-control-sm" value="<%=noOfDays%>" placeholder="Enter Days Stay" onkeydown="allowOnlyNumbers(event)"/>
                                         <span id="errStayDays" class="text-danger error-message"></span>
                                     </div>
                                 </div>
@@ -182,21 +205,21 @@
                                         <label for="txtTaxPrc">Tax(%): </label>
                                     </div>
                                     <div class="col-1">
-                                        <input type="text" id="txtTaxPrc" name="txtTaxPrc" class="form-control form-control-sm" value="<%=price_per_day%>" placeholder="%" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
+                                        <input type="text" id="txtTaxPrc" name="txtTaxPrc" class="form-control form-control-sm" value="" placeholder="%" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
                                         <span id="errTaxPrc" class="text-danger error-message"></span>
                                     </div>
                                     <div class="col-2">
                                         <label for="txtTax">Tax(&#8377;): </label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" readonly id="txtTax" name="txtTax" class="form-control form-control-sm" value="<%=price_per_day%>" placeholder="Tax in &#8377;" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
+                                        <input type="text" readonly id="txtTax" name="txtTax" class="form-control form-control-sm" value="<%=tax%>" placeholder="Tax in &#8377;" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
                                         <span id="errTax" class="text-danger error-message"></span>
                                     </div>
                                     <div class="col-2">
                                         <label for="txtBeverage">Beverages: </label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" id="txtBeverage" name="txtBeverage" class="form-control form-control-sm" value="<%=price_per_day%>" placeholder="Enter if any Beverages" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
+                                        <input type="text" id="txtBeverage" name="txtBeverage" class="form-control form-control-sm" value="<%=beverage%>" placeholder="Enter if any Beverages" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
 
                                     </div>
 
@@ -206,7 +229,7 @@
                                         <label for="txtTotalAmt">Total Amount: </label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" readonly id="txtTotalAmt" name="txtTotalAmt" class="form-control form-control-sm" value="<%=price_per_day%>" placeholder="Total Amount" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
+                                        <input type="text" readonly id="txtTotalAmt" name="txtTotalAmt" class="form-control form-control-sm" value="<%=totalAmt%>" placeholder="Total Amount" onkeydown="allowOnlyNumbersAndDecimal(event)"/>
 
                                     </div>
 
@@ -216,7 +239,7 @@
                                     <div class="col-12 col-md-2">
                                         <button type="submit" class="btn btn-success ">Submit <i class="fas fa-paper-plane"></i></button>
                                         <input type="text" id="txtUserId"  class="d-none" name="txtUserId" value="<%= strUserId%>"/>
-                                        <input type="text"  id="txtGuestId" class="d-none" name="txtGuestId" value="<%= isBlankNull(guestid)%>">
+                                        <input type="text"  id="txtBookingid" class="d-none" name="txtBookingid" value="<%= isBlankNull(bookingid)%>">
 
                                     </div>
                                 </div>

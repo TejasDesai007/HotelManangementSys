@@ -33,7 +33,7 @@
     <body class="bg-success">
         <!-- Main Content with Bootstrap Card -->
         <div class="container mt-5">
-            <form id="frmTypeP" action="insertTypePrice.jsp" method="POST">
+            <form id="frmTypeP" action="InsertType" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card bg-light text-dark">

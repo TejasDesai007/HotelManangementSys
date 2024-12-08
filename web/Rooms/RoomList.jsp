@@ -43,7 +43,7 @@
                             <h4>Rooms List</h4>
                         </div>
 
-                        <table class="table table-bordered table-striped" id="inputTable">
+                        <table class="table table-bordered table-responsive  table-striped" id="inputTable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="text-center"></th>

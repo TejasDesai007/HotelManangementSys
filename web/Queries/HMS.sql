@@ -35,6 +35,7 @@ CREATE TABLE rooms(
 select * From rooms;
 
 
+
 CREATE TABLE guests(
     guestid int primary key not null auto_increment,
     lname varchar(256),
@@ -163,8 +164,43 @@ WHERE 1=1;
 
 SELECT * FROM guests WHERE guestid = 1;
 
-Delete from roomstypesdetails where type_id = 1
+Delete from roomstypesdetails where type_id = 1;
 
 
 
+Select concat(g.fname," ", g.lname) as GuestName, room_no, total_bill, room_price, taxes, beverages, check_in, check_out, booked_days, ud.fname as createdBy from bookings b 
+join(
+Select guestid, lname, fname from guests
+)g on g.guestid = b.guestid
+join(
+Select userid, fname from userdetails
+)ud on ud.userid = b.booked_by
+join(
+Select roomid, room_no from rooms
+)r on r.roomid = b.roomid
+Where 1=1 ;
 
+
+Delimiter $$
+Create procedure GetBookingsDtls(
+     IN query varchar(256)
+)
+BEGIN
+    SET @query = concat('Select concat(g.fname," ", g.lname) as GuestName,bookingid, room_no, total_bill, room_price, taxes, beverages,DATE_FORMAT(check_in, ''%d-%m-%Y %H:%i:%s'') as check_in , DATE_FORMAT(check_out, ''%d-%m-%Y %H:%i:%s'') as check_out, booked_days, ud.fname as createdBy from bookings b 
+join(
+Select guestid, lname, fname from guests
+)g on g.guestid = b.guestid
+join(
+Select userid, fname from userdetails
+)ud on ud.userid = b.booked_by
+join(
+Select roomid, room_no from rooms
+)r on r.roomid = b.roomid
+Where 1=1 ', query);
+prepare stmt from @query;
+execute stmt;
+END$$
+
+Call GetBookingsDtls(' ANd bookingid = 3 ');
+Call GetBookingsDtls(' AND check_in >= ''2024-10-05 00:00:00'' and check_in <= ''2024-10-05 23:59:59'' ')
+select * from bookings where bookingid = 3

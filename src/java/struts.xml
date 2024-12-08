@@ -49,6 +49,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         <action name="DeleteType">
             <result>/Rooms/DeleteType.jsp</result>
         </action>
+        <action name="InsertType">
+            <result>/Rooms/insertTypePrice.jsp</result>
+        </action>
         
         
         
@@ -75,6 +78,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
         </action>
         <action name="InsertBookings">
             <result>/Bookins/InsertBookings.jsp</result>
+        </action>
+        <action name="BookingsList">
+            <result>/Bookins/BookingsList.jsp</result>
+        </action>
+        <action name="BookingsListInnr">
+            <result>/Bookins/BookingsInnrList.jsp</result>
+        </action>
+        <action name="DeleteBookings">
+            <result>/Bookins/DeleteBookings.jsp</result>
+        </action>
+        <action name="Checkout">
+            <result>/Bookins/Checkout.jsp</result>
         </action>
         
         
