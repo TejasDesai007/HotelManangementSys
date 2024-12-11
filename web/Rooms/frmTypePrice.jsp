@@ -12,7 +12,7 @@
 <%
     String strUserId = String.valueOf(session.getAttribute("UserId"));
     if ("".equals(isBlankNull(strUserId)) || "null".equalsIgnoreCase(strUserId)) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("Login");
         session.removeAttribute("UserId");
     } else {
 %>

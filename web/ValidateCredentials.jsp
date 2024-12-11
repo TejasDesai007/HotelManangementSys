@@ -22,7 +22,7 @@
 
         rst = pstmt.executeQuery();
         if (rst.next()) {
-            System.out.println("select UserId,fname from userdetails where BINARY UserName = '" + strUserName + "' and BINARY Password = '" + strPassword + "'");
+//            System.out.println("select UserId,fname from userdetails where BINARY UserName = '" + strUserName + "' and BINARY Password = '" + strPassword + "'");
             session.setAttribute("UserId", "" + rst.getString("UserId") + "");
             session.setAttribute("UserName", "" + rst.getString("fname") + "");
             response.sendRedirect("Home");
