@@ -15,7 +15,7 @@ Create table userdetails(
     Phone varchar(256)
 );
 Select * from userdetails;
-
+delete from userdetails where userid = 4;
 CREATE TABLE rooms(
     roomid int primary key not null auto_increment,
     room_no int,
@@ -59,7 +59,8 @@ CREATE TABLE guests(
 Select * From guests;
 
 
-
+select UserId,fname from userdetails where BINARY UserName = 'Tejas007' and BINARY Password = 'Tejas007';
+Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE Bookings(     bookingid int primary key not null auto_increment,   ' at line 4
 
 
 CREATE TABLE Bookings(
@@ -84,16 +85,24 @@ select * from Bookings;
 
 
 DELIMITER $$
-CREATE TRIGGER calculateTotal_Bill
-BEFORE INSERT ON Bookings
+
+CREATE TRIGGER calculateTotal_Bill_Update
+BEFORE update
+ON Bookings
 FOR EACH ROW
 BEGIN
-    SET NEW.total_bill = NEW.room_price * NEW.booked_days + NEW.taxes + NEW.beverages;
+    SET NEW.total_bill = COALESCE(NEW.room_price, 0) * COALESCE(NEW.booked_days, 0)
+                       + COALESCE(NEW.taxes, 0) 
+                       + COALESCE(NEW.beverages, 0);
 END$$
+
 DELIMITER ;
 
 
+Drop trigger calculateTotal_Bill;
 
+
+Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OR UPDATE ON Bookings FOR EACH ROW BEGIN     SET NEW.total_bill = NEW.room_price' at line 2
 
 
 Create table roomsTypesDetails(
@@ -183,10 +192,10 @@ Where 1=1 ;
 
 Delimiter $$
 Create procedure GetBookingsDtls(
-     IN query varchar(256)
+	IN query varchar(256)
 )
 BEGIN
-    SET @query = concat('Select concat(g.fname," ", g.lname) as GuestName,bookingid, room_no, total_bill, room_price, taxes, beverages,DATE_FORMAT(check_in, ''%d-%m-%Y %H:%i:%s'') as check_in , DATE_FORMAT(check_out, ''%d-%m-%Y %H:%i:%s'') as check_out, booked_days, ud.fname as createdBy from bookings b 
+	SET @query = concat('Select concat(g.fname," ", g.lname) as GuestNamecalculateTotal_BillcalculateTotal_Bill,bookingid, room_no, total_bill, room_price, taxes, beverages,DATE_FORMAT(check_in, ''%d-%m-%Y %H:%i:%s'') as check_in , DATE_FORMAT(check_out, ''%d-%m-%Y %H:%i:%s'') as check_out, booked_days, ud.fname as createdBy from bookings b 
 join(
 Select guestid, lname, fname from guests
 )g on g.guestid = b.guestid
@@ -201,6 +210,8 @@ prepare stmt from @query;
 execute stmt;
 END$$
 
-Call GetBookingsDtls(' ANd bookingid = 3 ');
-Call GetBookingsDtls(' AND check_in >= ''2024-10-05 00:00:00'' and check_in <= ''2024-10-05 23:59:59'' ')
-select * from bookings where bookingid = 3
+Call GetBookingsDtls('');
+Call GetBookingsDtls(' AND check_in >= ''2024-calculateTotal_Bill10-05 00:00:00'' and check_in <= ''2024-10-05 23:59:59'' ');
+select * from bookings where bookingid = 3;
+select UserId,fname from userdetails where BINARY UserName = 'Tejas008' and BINARY Password = 'Tejas008';
+
