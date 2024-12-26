@@ -26,10 +26,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="style/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/OnlyNumbers.js?v=1" type="text/javascript"></script>
+        <script src="js/OnlyNumbers.js?v=2" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
         
-        <script src="js/BookingsList.js?v=1" type="text/javascript"></script>
+        <script src="js/BookingsList.js?v=2" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success" >

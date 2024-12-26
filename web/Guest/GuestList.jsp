@@ -28,7 +28,7 @@
         <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
-        <script src="js/GuestList.js?v=1" type="text/javascript"></script>
+        <script src="js/GuestList.js?v=2" type="text/javascript"></script>
         
         <jsp:include page="../include/menu.jsp"/>
     </head>

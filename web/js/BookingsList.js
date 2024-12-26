@@ -57,6 +57,23 @@ $(document).ready(function () {
             }
         });
     }
+    function deleteBookings(bookingid) {
+        if (confirm('Are you sure you want to delete this guest?')) {
+            $.ajax({
+                url: 'DeleteBookings',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {bookingid: bookingid}, // Send roomid as a regular POST parameter
+                success: function (response) {
+                    alert(response.trim());
+                    loadBookingList(); // Reload the room list after deletion
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+    }
 
     // Function to populate the table with data from the backend
     function populateTable(data) {
@@ -78,7 +95,8 @@ $(document).ready(function () {
 
                 }
                 row += '<td class="text-center">' +
-                        '<a href="DeleteBookings?bookingid=' + item.bookingid + '" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>' +
+                        '<button class="btn btn-danger btn-sm" onclick="deleteBookings(\'' + item.bookingid + '\')">' +
+                        '<i class="fas fa-trash"></i></button>' +
                         '</td>';
 
                 // Check if check_out exists to show or hide the Checkout button
@@ -101,5 +119,5 @@ $(document).ready(function () {
             });
         }
     }
-
+    window.deleteBookings = deleteBookings;
 });

@@ -3,26 +3,24 @@ $(document).ready(function () {
     loadRoomList();
 
     // Listen for the Enter key on each textbox (input[type="text"])
-    $('#inputTable input[type="text"]').on('keydown', function (event) {
+    $('#inputTable').on('keydown', 'input[type="text"]', function (event) {
         // Check if the key pressed is the Enter key (key code 13)
         if (event.keyCode === 13) {
-            event.preventDefault();  // Prevent form submission or other default actions
+            event.preventDefault(); // Prevent form submission or other default actions
 
             // Collect data from labels (headers) and textboxes (input fields) into JSON
             var data = {};
 
-            // Loop through each row to collect label-textbox pairs
-            $('#inputTable thead tr').each(function () {
-                // Iterate over each td in the row
-                $(this).find('td').each(function () {
-                    var label = $(this).find('label').text().trim();  // Get the label text
-                    var textbox = $(this).find('input[type="text"]'); // Get the associated textbox
-                    if (textbox.length > 0) {
-                        data[label] = textbox.val(); // Add label-textbox pair to JSON object
-                    }
-                });
+            // Loop through each row in the table header to collect label-textbox pairs
+            $('#inputTable thead tr td').each(function () {
+                var label = $(this).find('label').text().trim(); // Get the label text
+                var textbox = $(this).find('input[type="text"]'); // Get the associated textbox
+                if (textbox.length > 0) {
+                    data[label] = textbox.val(); // Add label-textbox pair to JSON object
+                }
             });
-            console.log(JSON.stringify(data));
+
+            console.log('Data sent:', JSON.stringify(data));
 
             // Send the JSON object to the backend using AJAX
             $.ajax({
@@ -40,6 +38,25 @@ $(document).ready(function () {
             });
         }
     });
+
+    // Function to delete rooms
+    function deleteRooms(roomid) {
+        if (confirm('Are you sure you want to delete this room?')) {
+            $.ajax({
+                url: 'DeleteRooms',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { roomid: roomid }, // Send roomid as a regular POST parameter
+                success: function (response) {
+                    alert(response.trim());
+                    loadRoomList(); // Reload the room list after deletion
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+    }
 
     // Function to load the room list when the page loads
     function loadRoomList() {
@@ -63,27 +80,34 @@ $(document).ready(function () {
         var table = $('#inputTable tbody');
         table.empty(); // Clear any previous results
 
-        // Ensure the response is parsed correctly
+        // Ensure the response is an array
         if (Array.isArray(data)) {
             // Iterate over the returned data and add rows to the table
             data.forEach(function (item) {
                 var row = '<tr>';
-                row += '<td class="text-center">'+ item.index+'</td>'; // Empty column for actions (like buttons, etc.)
+                row += '<td class="text-center">' + (item.index || '') + '</td>'; // Add the index or leave empty
                 row += '<td class="text-center">' +
-                   '<a href="Rooms?roomid=' + item.roomid + '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>' + 
-                   '</td>';
+                       '<a href="Rooms?roomid=' + item.roomid + '" class="btn btn-primary btn-sm">' +
+                       '<i class="fas fa-edit"></i></a>' +
+                       '</td>';
                 row += '<td class="text-center">' +
-                   '<a href="DeleteRooms?roomid=' + item.roomid + '" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>' + 
-                   '</td>';
-                row += '<td class="text-center">' + item.room_no + '</td>';
-                row += '<td class="text-center">' + item.room_type + '</td>';
-                row += '<td class="text-center">' + item.price_per_day + '</td>';
-                row += '<td class="text-center">' + item.room_dscrpt + '</td>';
-                row += '<td class="text-center">' + item.created_on + '</td>';
-                row += '<td class="text-center">' + item.created_by + '</td>';
+                       '<button class="btn btn-danger btn-sm" onclick="deleteRooms(\'' + item.roomid + '\')">' +
+                       '<i class="fas fa-trash"></i></button>' +
+                       '</td>';
+                row += '<td class="text-center">' + (item.room_no || '') + '</td>';
+                row += '<td class="text-center">' + (item.room_type || '') + '</td>';
+                row += '<td class="text-center">' + (item.price_per_day || '') + '</td>';
+                row += '<td class="text-center">' + (item.room_dscrpt || '') + '</td>';
+                row += '<td class="text-center">' + (item.created_on || '') + '</td>';
+                row += '<td class="text-center">' + (item.created_by || '') + '</td>';
                 row += '</tr>';
                 table.append(row);
             });
+        } else {
+            console.error('Invalid data format:', data);
         }
     }
+
+    // Expose the deleteRooms function to the global scope (needed for inline onclick)
+    window.deleteRooms = deleteRooms;
 });

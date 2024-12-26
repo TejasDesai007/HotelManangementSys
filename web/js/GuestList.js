@@ -41,6 +41,23 @@ $(document).ready(function () {
             });
         }
     });
+    function deleteGuest(guestid) {
+        if (confirm('Are you sure you want to delete this guest?')) {
+            $.ajax({
+                url: 'DeleteGuest',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {guestid: guestid}, // Send roomid as a regular POST parameter
+                success: function (response) {
+                    alert(response.trim());
+                    LoadGuestList()(); // Reload the room list after deletion
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+    }
 
     // Function to load the room list when the page loads
     function LoadGuestList() {
@@ -76,7 +93,8 @@ $(document).ready(function () {
                         '<a href="Guests?guestid=' + item.guestid + '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>' +
                         '</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' +
-                        '<a href="DeleteGuest?guestid=' + item.guestid + '" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>' +
+                        '<button class="btn btn-danger btn-sm" onclick="deleteGuest(\'' + item.guestid + '\')">' +
+                        '<i class="fas fa-trash"></i></button>' +
                         '</td>'; // Empty column for actions (like buttons, etc.)
                 row += '<td class="text-center">' + item.lname + ' ' + item.fname + '</td>';
                 row += '<td class="text-center">' + item.address1 + ' ' + item.address2 + '</td>';
@@ -94,4 +112,5 @@ $(document).ready(function () {
             });
         }
     }
+    window.deleteGuest = deleteGuest;
 });

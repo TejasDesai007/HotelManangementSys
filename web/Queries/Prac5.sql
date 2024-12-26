@@ -106,7 +106,7 @@ select * from Emp_archeives;
 Create table Total_working_hours(
     total_hrs decimal(10,2)
 );
-
+insert into Total_working_hours values (0);
 
 delimiter $$
 Create trigger TotalWorkingHrsInsert
@@ -137,5 +137,6 @@ delimiter ;
 
 
 select * from Total_working_hours;
-insert into emp values('Tejas','Software eng','2024-10-06',9);
+
+delete from emp where Name like '%Tejas%';
 

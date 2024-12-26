@@ -29,7 +29,7 @@
         <script src="js/OnlyNumbers.js" type="text/javascript"></script>
         <script src="js/JQuery.js" type="text/javascript"></script>
         <script src="js/TypePrice.js" type="text/javascript"></script>
-        <script src="js/RoomList.js?v=1" type="text/javascript"></script>
+        <script src="js/RoomList.js?v=12" type="text/javascript"></script>
         <jsp:include page="../include/menu.jsp"/>
     </head>
     <body class="bg-success">

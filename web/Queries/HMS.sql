@@ -33,7 +33,7 @@ CREATE TABLE rooms(
     foreign key(type_id) references roomsTypesDetails(type_id)
 );
 select * From rooms;
-
+Insert into rooms(room_no, status, room_type, price_per_day, room_dscrpt, created_on, created_by, type_id) values (110 ,'Unoccupied','Five Capacity room',4700,'along with wifi-2bed-1pool',now(),1,7);
 
 
 CREATE TABLE guests(
@@ -57,6 +57,7 @@ CREATE TABLE guests(
     foreign key(updated_by) references userdetails(userid)
 );
 Select * From guests;
+INSERT INTO guests(lname,fname,address1,address2,city,state,country,pincode,UID_type,UID_NO,phone,created_on,created_by)VALUES ('Doe','John','123 Main Street','Apt 4B','Mumbai','Maharashtra','India',400001,'Aadhar','1234-5678-9012','9876543210',NOW(),1);
 
 
 select UserId,fname from userdetails where BINARY UserName = 'Tejas007' and BINARY Password = 'Tejas007';
@@ -80,6 +81,7 @@ CREATE TABLE Bookings(
     foreign key (booked_by) references userdetails(userid)
 );
 select * from Bookings;
+INSERT INTO Bookings( guestid, roomid, room_price, taxes, beverages, check_in, booked_days, booked_by ) VALUES ( 4, 3, 5000.00, 500.00, 200.00, NOW(), 3, 1 );
 
 # bookingid, guestid, roomid, total_bill, room_price, taxes, beverages, check_in, check_out, booked_days, booked_by
 
@@ -215,3 +217,6 @@ Call GetBookingsDtls(' AND check_in >= ''2024-calculateTotal_Bill10-05 00:00:00'
 select * from bookings where bookingid = 3;
 select UserId,fname from userdetails where BINARY UserName = 'Tejas008' and BINARY Password = 'Tejas008';
 
+select * from rooms;
+
+select check_out from bookings;

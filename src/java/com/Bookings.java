@@ -17,8 +17,6 @@ public class Bookings {
 
     private String txtBookingid, txtUserId, txtTotalAmt, txtBeverage, txtTax, txtTaxPrc, txtStayDays, txtRoomPrice, slcRooms, slcGuest;
 
-   
-
     public String getTxtBookingid() {
         return txtBookingid;
     }
@@ -27,7 +25,6 @@ public class Bookings {
         this.txtBookingid = txtBookingid;
     }
 
-   
     public String getTxtUserId() {
         return txtUserId;
     }
@@ -139,6 +136,11 @@ public class Bookings {
                 pstmt.setString(4, txtStayDays);
                 pstmt.setString(5, txtBookingid); // Ensure that the correct room_id is set
                 pstmt.executeUpdate();
+                System.out.println("Update Bookings set room_price = '" + txtRoomPrice
+                        + "', taxes = '" + txtTax
+                        + "', beverages = '" + txtBeverage
+                        + "', booked_days = '" + txtStayDays
+                        + "' where bookingid = '" + txtBookingid + "';");
                 pstmt.close();
             }
 

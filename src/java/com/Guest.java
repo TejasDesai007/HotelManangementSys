@@ -166,6 +166,20 @@ public class Guest {
                 pstmt.setString(12, txtUserId);
                 pstmt.setString(13, txtGuestId);
                 pstmt.executeUpdate();
+                System.out.println("Update guests set lname = '" + txtLName + 
+                   "', fname = '" + txtFName + 
+                   "', address1 = '" + txtAddress1 + 
+                   "', address2 = '" + txtAddress2 + 
+                   "', city = '" + txtCity + 
+                   "', state = '" + txtState + 
+                   "', country = '" + txtCountry + 
+                   "', pincode = '" + txtPincode + 
+                   "', UID_type = '" + ddlUIDType + 
+                   "', UID_NO = '" + txtUIDNo + 
+                   "', phone = '" + txtPhone + 
+                   "', update_on = now(), updated_by = '" + txtUserId + 
+                   "' where guestid = '" + txtGuestId + "';");
+
                 pstmt.close();
             }
 

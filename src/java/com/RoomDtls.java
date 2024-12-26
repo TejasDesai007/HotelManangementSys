@@ -108,6 +108,14 @@ public class RoomDtls {
                 pstmt.setString(6, slcRoomType);
                 pstmt.setString(7, txtRoomId); // Ensure that the correct room_id is set
                 pstmt.executeUpdate();
+                System.out.println("Update rooms set room_no = '" + txtRoomNo
+                        + "', room_type = '" + roomtype
+                        + "', price_per_day = '" + txtRoomPrice
+                        + "', room_dscrpt = '" + txtRoomdscrpt
+                        + "', updated_on = now(), updated_by = '" + txtUserId
+                        + "', type_id = '" + slcRoomType
+                        + "' where roomid = '" + txtRoomId + "';");
+
                 pstmt.close();
             }
 
